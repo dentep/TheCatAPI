@@ -6,7 +6,7 @@ Test project for an interview on position React Native Developer
   <li>1 - 2 часа: создание приложения на js</li>
   <li>3 часа: документация TypeScript и transition js/jsx => ts/tsx</li>
   <li>1 час: Проверки</li>
-  <li>5 часов (ужас): пытаться сделать кнопки навигации как в примере Figma (см. ниже)
+  <li>5 часов (ужас): пытаться сделать кнопки навигации как в примере Figma (см. [ниже](#curious))
 </ul>
 
 
