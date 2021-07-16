@@ -18,15 +18,21 @@ export type BreedItem = {
 };
 
 export type FavouritesItem = {
-	created_at: string;
+	created_at?: string;
 	id: number;
-	image_id: string;
-	sub_id?: string;
-	user_id: string;
 	image: ImageType;
+	image_id?: string;
+	sub_id?: any;
+	user_id?: string;
 };
 
 export type ImageType = {
 	url?: string;
 	id: string;
+};
+
+export type FavouritesContextState = {
+	favourites: FavouritesItem[];
+	addFavourite: (item: FavouritesItem) => void;
+	replaceFavourites: (favourites: FavouritesItem[]) => void;
 };

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
-import AppButton from "../components/Button";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BreedStackParamList } from "../types";
 import useApi from "../hooks/useApi";
@@ -9,7 +8,6 @@ import { useEffect } from "react";
 import ActivityIndicator from "../components/ActivityIndicator";
 import Screen from "../components/Screen";
 import BreedsListItem from "../components/lists/BreedsListItem";
-import { RouteProp } from "@react-navigation/native";
 
 type ProfileScreenNavigationProp = StackNavigationProp<
 	BreedStackParamList,

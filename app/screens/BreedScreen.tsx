@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { View, StyleSheet, ScrollView, Dimensions } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BreedStackParamList } from "../types";
@@ -12,21 +12,25 @@ import useApi from "../hooks/useApi";
 import ScrollViewHeader from "../components/ScrollViewHeader";
 import favouritesApi from "../api/favourites";
 import { showMessage } from "react-native-flash-message";
+import { AppContext } from "../context/AppContext";
+import { ContextTypes } from "../context/contextTypes";
+import { useDispatch } from "react-redux";
+import { addFavourite } from "../redux/actions";
 
-type ProfileScreenNavigationProp = StackNavigationProp<
-	BreedStackParamList,
-	"Breed"
->;
-type ProfileScreenRouteProp = RouteProp<BreedStackParamList, "Breed">;
+type ScreenNavigationProp = StackNavigationProp<BreedStackParamList, "Breed">;
+type ScreenRouteProp = RouteProp<BreedStackParamList, "Breed">;
 
 type Props = {
-	route: ProfileScreenRouteProp;
-	navigation: ProfileScreenNavigationProp;
+	route: ScreenRouteProp;
+	navigation: ScreenNavigationProp;
 };
 
 function BreedScreen({ route, navigation }: Props) {
-	//state to control image loader
-	const [isImageLoading, setImageLoading] = useState(false);
+	//context to add new image (useContext & useReducer way)
+	const { dispatch } = useContext(AppContext);
+	//dispatch using redux way (omitting the actual action in /actions/index.ts)
+	const reduxDispatch = useDispatch();
+
 	//props destructure
 	const { image, id, name, description } = route.params.item;
 	//calculation for image size (-40 is the padding of '20' for each side)
@@ -37,6 +41,8 @@ function BreedScreen({ route, navigation }: Props) {
 	const postFavouriteImage = useApi(favouritesApi.postFavourite);
 	//displaying cat image
 	const [catImage, setCatImage] = useState(image);
+	//loader for image
+	const [isImageLoading, setImageLoading] = useState(false);
 
 	//меняем фото если была нажата кнопка "другое фото"
 	useEffect(() => {
@@ -52,9 +58,22 @@ function BreedScreen({ route, navigation }: Props) {
 
 	//todo: Проверка на имеющуюся фотографию в "избранных"
 	const onPostFavourite = async () => {
-		if (catImage && catImage.id) {
+		if (catImage && catImage.id && catImage.url) {
+			//adding to api call
 			const result = await postFavouriteImage.request(catImage.id);
+
+			//if everything ok - add to context
 			if (result.ok) {
+				//useContext & useReducer way
+				dispatch({
+					type: ContextTypes.Add,
+					payload: { id: result.data.id, image: catImage },
+				});
+				//redux way
+				reduxDispatch({
+					type: ContextTypes.Add,
+					payload: { id: result.data.id, image: catImage },
+				});
 				return showMessage({
 					message: "Добавлено",
 					description: "Вы успешно добавили фотографию в избранное!",
@@ -68,7 +87,6 @@ function BreedScreen({ route, navigation }: Props) {
 				"Что-то пошло не так. Пожалуйста, попробуйте еще раз или попробуйте поменять фотографию",
 			type: "danger",
 		});
-		//const result = await postFavouriteImage.request();
 	};
 
 	return (

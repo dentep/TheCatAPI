@@ -17,6 +17,9 @@ function ImageView(props: ImageView) {
 	const { image, onLoadStart, onLoadEnd, width, isImageLoading, style } =
 		props;
 
+	//console.log("image in image view");
+	//console.log(image?.url);
+
 	return (
 		<View style={[style, styles.container]}>
 			{image ? (
