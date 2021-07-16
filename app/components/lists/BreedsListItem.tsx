@@ -11,6 +11,7 @@ import { AppText } from "../Text";
 import ActivityIndicator from "../ActivityIndicator";
 import { BreedItem } from "../../types";
 import ImageView from "../ImageView";
+import { Styles } from "../../config/styles";
 
 function BreedsListItem({
 	item,
@@ -46,7 +47,7 @@ function BreedsListItem({
 	);
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Styles>({
 	container: {
 		flex: 1,
 		justifyContent: "space-between",

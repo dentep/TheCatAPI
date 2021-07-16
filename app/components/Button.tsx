@@ -5,17 +5,20 @@ import {
 	TouchableOpacity,
 	GestureResponderEvent,
 	ViewStyle,
+	TextStyle,
+	StyleProp,
 } from "react-native";
 import colors from "../config/colors";
+import { Styles } from "../config/styles";
 import { AppText } from "./Text";
 
-type AppButton = {
+interface AppButton {
 	onPress: (event: GestureResponderEvent) => void;
 	label: string;
 	backgroundColor?: string;
-	labelStyle?: React.CSSProperties;
-	buttonStyle?: ViewStyle;
-};
+	labelStyle?: StyleProp<TextStyle>;
+	buttonStyle?: StyleProp<ViewStyle>;
+}
 
 function AppButton(props: AppButton) {
 	const { backgroundColor, label, labelStyle, buttonStyle } = props;
@@ -28,7 +31,7 @@ function AppButton(props: AppButton) {
 	);
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Styles>({
 	container: {
 		width: "100%",
 		paddingHorizontal: 20,

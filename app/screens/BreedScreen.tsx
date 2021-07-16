@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { View, StyleSheet, ScrollView, Dimensions } from "react-native";
+import {
+	View,
+	StyleSheet,
+	ScrollView,
+	Dimensions,
+	ViewStyle,
+	TextStyle,
+} from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BreedStackParamList } from "../types";
 import { RouteProp } from "@react-navigation/native";
@@ -124,7 +131,16 @@ function BreedScreen({ route, navigation }: Props) {
 	);
 }
 
-const styles = StyleSheet.create({
+interface Styles {
+	scrollContainer: ViewStyle;
+	container: ViewStyle;
+	buttonBox: ViewStyle;
+	imageBox: ViewStyle;
+	title: TextStyle;
+	subtitle: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
 	scrollContainer: {
 		width: "100%",
 		height: "100%",

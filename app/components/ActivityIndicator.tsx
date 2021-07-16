@@ -3,6 +3,7 @@ import LottieView from "lottie-react-native";
 import { View, StyleSheet } from "react-native";
 import loaderFile from "../assets/animations/loader.json";
 import activityFile from "../assets/animations/activity.json";
+import { Styles } from "../config/styles";
 
 function ActivityIndicator({
 	visible = false,
@@ -31,7 +32,7 @@ function ActivityIndicator({
 	);
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Styles>({
 	overlay: {
 		justifyContent: "center",
 		position: "absolute",

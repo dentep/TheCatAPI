@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import ActivityIndicator from "../components/ActivityIndicator";
 import Screen from "../components/Screen";
 import BreedsListItem from "../components/lists/BreedsListItem";
+import { Styles } from "../config/styles";
 
 type ProfileScreenNavigationProp = StackNavigationProp<
 	BreedStackParamList,
@@ -50,7 +51,7 @@ export default function BreedsScreen({ navigation }: Props) {
 	);
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Styles>({
 	container: {
 		flex: 1,
 	},

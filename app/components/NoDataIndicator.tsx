@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import colors from "../config/colors";
+import { Styles } from "../config/styles";
 import { AppText } from "./Text";
 
 function NoDataIndicator() {
@@ -11,7 +12,7 @@ function NoDataIndicator() {
 	);
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Styles>({
 	container: {
 		justifyContent: "center",
 		alignItems: "center",

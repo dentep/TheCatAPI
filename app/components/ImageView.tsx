@@ -1,8 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Image, ViewProps } from "react-native";
+import { View, StyleSheet, Image, ViewStyle, StyleProp } from "react-native";
 import { ImageType } from "../types";
 import blankImage from "../assets/noImage.png";
 import ActivityIndicator from "./ActivityIndicator";
+import { Styles } from "../config/styles";
 
 type ImageView = {
 	image?: ImageType;
@@ -10,15 +11,12 @@ type ImageView = {
 	onLoadEnd: () => void;
 	width: number;
 	isImageLoading: boolean;
-	style?: any;
+	style?: StyleProp<ViewStyle>;
 };
 
 function ImageView(props: ImageView) {
 	const { image, onLoadStart, onLoadEnd, width, isImageLoading, style } =
 		props;
-
-	//console.log("image in image view");
-	//console.log(image?.url);
 
 	return (
 		<View style={[style, styles.container]}>
@@ -57,7 +55,7 @@ function ImageView(props: ImageView) {
 	);
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Styles>({
 	image: {
 		borderRadius: 20,
 	},

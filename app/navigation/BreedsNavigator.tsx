@@ -45,7 +45,3 @@ export default function BreedsNavigator() {
 		</Stack.Navigator>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {},
-});

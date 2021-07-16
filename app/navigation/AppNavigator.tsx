@@ -1,10 +1,9 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 import { BottomTabParamList } from "../types";
 import FavouritesScreen from "../screens/FavouritesScreen";
 import colors from "../config/colors";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import Icon from "../components/Icon";
 import BreedsNavigator from "./BreedsNavigator";
 
@@ -66,7 +65,11 @@ export default function BottomTabNavigator() {
 	);
 }
 
-const styles = StyleSheet.create({
+interface Style {
+	tabbar: ViewStyle;
+}
+
+const styles = StyleSheet.create<Style>({
 	tabbar: {
 		borderTopLeftRadius: 21,
 		borderTopRightRadius: 21,

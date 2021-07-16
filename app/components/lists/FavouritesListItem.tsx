@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { FavouritesItem } from "../../types";
 import ImageView from "../ImageView";
 import { Dimensions } from "react-native";
+import { Styles } from "../../config/styles";
 
 function FavouritesListItem({ item }: { item: FavouritesItem }) {
 	const [isImageLoading, setImageLoading] = useState(false);
@@ -22,7 +23,7 @@ function FavouritesListItem({ item }: { item: FavouritesItem }) {
 	);
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Styles>({
 	container: {
 		borderRadius: 8,
 		marginVertical: 10,
