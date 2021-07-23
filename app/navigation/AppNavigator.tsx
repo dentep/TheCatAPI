@@ -6,6 +6,7 @@ import colors from "../config/colors";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import Icon from "../components/Icon";
 import BreedsNavigator from "./BreedsNavigator";
+import ShadowBox from "../components/Shadows/ShadowBox";
 
 const Tabs = createBottomTabNavigator<BottomTabParamList>();
 
@@ -14,12 +15,33 @@ function TabBarIcon(props: { name: any; focused: boolean; size: any }) {
 	return (
 		<View
 			style={{
-				backgroundColor: focused ? colors.primaryLight : "transparent",
-				borderRadius: 20,
-				padding: 8,
+				flex: 1,
+				alignItems: "center",
+				justifyContent: "center",
+				backgroundColor: colors.tabBackground,
 			}}
 		>
-			<Icon {...props} color={focused ? colors.primary : colors.medium} />
+			<ShadowBox
+				inner={focused}
+				useSvg
+				style={{
+					shadowOffset: { width: 3, height: 3 },
+					shadowOpacity: 0.8,
+					shadowColor: "#999",
+					shadowRadius: 3,
+					borderRadius: 25,
+					backgroundColor: colors.tabBackground,
+					width: 50,
+					height: 50,
+					justifyContent: "center",
+					alignItems: "center",
+				}}
+			>
+				<Icon
+					{...props}
+					color={focused ? colors.primary : colors.medium}
+				/>
+			</ShadowBox>
 		</View>
 	);
 }
