@@ -10,7 +10,7 @@ Test project for an interview on position React Native Developer
 </ul>
 
 
-# Alpha 1.0.1 staging
+# Alpha 1.0.2 staging
 `Установка (можно любой из способов):`
 <ol>
   <li>Заходим на <a href="https://expo.io/@denistepp/Cats-YakovlevStudio?release-channel=staging">Проект в Expo</a>. Сканим QR и смотрим приложение.</li>
@@ -18,6 +18,12 @@ Test project for an interview on position React Native Developer
 </ol>
 
 `Что нового:`
+
+`1.0.2`
+
+Я думал добавить redux-persist и redux-saga, но за имением всего 6 часов свободного времени за эту неделю я решил посвятить нашей задаче по ТЕНЯМ (shadows). Оказалось, что сделать их РЕАЛЬНО!
+
+После всех моих мучений и вопросов на SO, я все так выполнил решение как было описано в Figma. Результат в [Дополнительно](#Дополнительно).
 
 `1.0.1`
 
