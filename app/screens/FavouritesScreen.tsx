@@ -10,6 +10,8 @@ import NoDataIndicator from "../components/NoDataIndicator";
 import useApi from "../hooks/useApi";
 import favouritesApi from "../api/favourites";
 import ActivityIndicator from "../components/ActivityIndicator";
+import AppButton from "../components/Button";
+import { useTheme } from "@react-navigation/native";
 
 interface IState {
 	favoriteItemsReducer: IFavoriteItems;
@@ -17,6 +19,7 @@ interface IState {
 
 export default function FavouritesScreen() {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 	const [refreshing, setRefreshing] = useState(false);
 	const getFavouritesApi = useApi(favouritesApi.getFavourites);
 	const items = useSelector(
@@ -60,7 +63,22 @@ export default function FavouritesScreen() {
 								keyExtractor={(item) => item.id.toString()}
 							/>
 						) : (
-							<NoDataIndicator />
+							<View
+								style={{
+									flex: 1,
+									justifyContent: "center",
+									alignItems: "center",
+									marginBottom: 20,
+								}}
+							>
+								<NoDataIndicator />
+								<AppButton
+									buttonStyle={{ marginHorizontal: 20 }}
+									backgroundColor={colors.primary}
+									label={`Перезагрузить`}
+									onPress={() => onRefresh()}
+								/>
+							</View>
 						)}
 					</>
 				)}

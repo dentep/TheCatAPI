@@ -4,10 +4,9 @@ import {
 	TouchableOpacity,
 	GestureResponderEvent,
 	StyleSheet,
-	ViewProps,
 } from "react-native";
-import colors from "../config/colors";
 import Icon from "./Icon";
+import { useTheme } from "@react-navigation/native";
 
 function BackButton({
 	onPress,
@@ -16,10 +15,17 @@ function BackButton({
 	onPress: (event: GestureResponderEvent) => void;
 	style?: {};
 }) {
+	const { colors } = useTheme();
 	return (
-		<View style={[styles.container, style]}>
+		<View
+			style={[
+				styles.container,
+				style,
+				{ backgroundColor: colors.primary },
+			]}
+		>
 			<TouchableOpacity onPress={onPress}>
-				<Icon name="chevron-left" size={30} color={colors.white} />
+				<Icon name="chevron-left" size={30} color={`#ffffff`} />
 			</TouchableOpacity>
 		</View>
 	);
@@ -31,7 +37,6 @@ const styles = StyleSheet.create({
 		height: 40,
 		borderRadius: 20,
 		marginVertical: 10,
-		backgroundColor: colors.primary,
 		justifyContent: "center",
 		alignItems: "center",
 		shadowColor: "#000",

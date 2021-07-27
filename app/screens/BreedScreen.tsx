@@ -22,6 +22,7 @@ import { showMessage } from "react-native-flash-message";
 import { useDispatch } from "react-redux";
 import NavigationService from "../navigation/NavigationService";
 import * as favoriteItemsActions from "../store/actions/favoriteItemsActions";
+import { useTheme } from "@react-navigation/native";
 
 type ScreenRouteProp = RouteProp<BreedStackParamList, "Breed">;
 type Props = {
@@ -30,6 +31,7 @@ type Props = {
 
 function BreedScreen({ route }: Props) {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 
 	//props destructure
 	const { image, id, name, description } = route.params.item;
@@ -106,15 +108,25 @@ function BreedScreen({ route }: Props) {
 					onLoadStart={() => setImageLoading(true)}
 					onLoadEnd={() => setImageLoading(false)}
 				/>
-				<AppText style={styles.title}>{name}</AppText>
-				<AppText style={styles.subtitle}>{description}</AppText>
+				<AppText
+					style={[styles.title, { color: colors.darkTextColor }]}
+				>
+					{name}
+				</AppText>
+				<AppText
+					style={[styles.subtitle, { color: colors.darkTextColor }]}
+				>
+					{description}
+				</AppText>
 				<View style={styles.buttonBox}>
 					<AppButton
+						backgroundColor={colors.primary}
 						labelStyle={{ fontSize: 14 }}
 						label={`Другое Фото`}
 						onPress={() => onFetchAnotherImage()}
 					/>
 					<AppButton
+						backgroundColor={colors.primary}
 						labelStyle={{ fontSize: 14 }}
 						label={`Добавить в избранное`}
 						onPress={() => onPostFavourite()}

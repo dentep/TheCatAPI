@@ -4,23 +4,24 @@ import BreedsScreen from "../screens/BreedsScreen";
 import BreedScreen from "../screens/BreedScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { BreedStackParamList } from "../types";
-import colors from "../config/colors";
+import { useTheme } from "@react-navigation/native";
 
 const Stack = createStackNavigator<BreedStackParamList>();
 
 const menuOptions = (title: string, headerShown: boolean = true) => {
+	const { colors } = useTheme();
 	return {
 		title: title,
 		headerShown: headerShown,
 		headerBackTitle: "",
 		headerTruncatedBackTitle: "",
 		headerBackTitleStyle: {
-			color: colors.white,
+			color: "#ffffff",
 			fontSize: 18,
 		},
-		headerTintColor: colors.white,
+		headerTintColor: "#ffffff",
 		headerTitleStyle: {
-			color: colors.white,
+			color: "#ffffff",
 			fontSize: 20,
 		},
 		headerStyle: {

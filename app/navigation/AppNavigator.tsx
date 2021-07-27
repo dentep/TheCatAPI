@@ -2,23 +2,25 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 import { BottomTabParamList } from "../types";
 import FavouritesScreen from "../screens/FavouritesScreen";
-import colors from "../config/colors";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import Icon from "../components/Icon";
 import BreedsNavigator from "./BreedsNavigator";
 import ShadowBox from "../components/Shadows/ShadowBox";
+import SettingsScreen from "../screens/SettingsScreen";
+import { useTheme } from "@react-navigation/native";
 
 const Tabs = createBottomTabNavigator<BottomTabParamList>();
 
 function TabBarIcon(props: { name: any; focused: boolean; size: any }) {
 	const { focused } = props;
+	const { colors } = useTheme();
 	return (
 		<View
 			style={{
 				flex: 1,
 				alignItems: "center",
 				justifyContent: "center",
-				backgroundColor: colors.tabBackground,
+				backgroundColor: colors.card,
 			}}
 		>
 			<ShadowBox
@@ -27,10 +29,10 @@ function TabBarIcon(props: { name: any; focused: boolean; size: any }) {
 				style={{
 					shadowOffset: { width: 3, height: 3 },
 					shadowOpacity: 0.8,
-					shadowColor: "#999",
+					shadowColor: colors.tabShadow,
 					shadowRadius: 3,
 					borderRadius: 25,
-					backgroundColor: colors.tabBackground,
+					backgroundColor: colors.card,
 					width: 50,
 					height: 50,
 					justifyContent: "center",
@@ -39,7 +41,7 @@ function TabBarIcon(props: { name: any; focused: boolean; size: any }) {
 			>
 				<Icon
 					{...props}
-					color={focused ? colors.primary : colors.medium}
+					color={focused ? colors.tabIcon : colors.medium}
 				/>
 			</ShadowBox>
 		</View>
@@ -47,12 +49,14 @@ function TabBarIcon(props: { name: any; focused: boolean; size: any }) {
 }
 
 export default function BottomTabNavigator() {
+	const { colors } = useTheme();
+	console.log(colors);
 	return (
 		<Tabs.Navigator
 			initialRouteName="BreedsNavigator"
 			tabBarOptions={{
-				activeTintColor: colors.primary,
-				inactiveTintColor: colors.medium,
+				activeTintColor: colors.background,
+				inactiveTintColor: colors.background,
 				showLabel: false,
 				style: styles.tabbar,
 			}}
@@ -83,6 +87,19 @@ export default function BottomTabNavigator() {
 					),
 				}}
 			/>
+			<Tabs.Screen
+				name="Settings"
+				component={SettingsScreen}
+				options={{
+					tabBarIcon: ({ color, focused }) => (
+						<TabBarIcon
+							size={25}
+							focused={focused}
+							name="account"
+						/>
+					),
+				}}
+			/>
 		</Tabs.Navigator>
 	);
 }
@@ -93,9 +110,8 @@ interface Style {
 
 const styles = StyleSheet.create<Style>({
 	tabbar: {
-		borderTopLeftRadius: 21,
-		borderTopRightRadius: 21,
-		backgroundColor: colors.tabBackground,
+		borderTopLeftRadius: 15,
+		borderTopRightRadius: 15,
 		position: "absolute",
 		bottom: 0,
 		padding: 10,

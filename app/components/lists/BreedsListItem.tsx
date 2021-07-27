@@ -6,12 +6,11 @@ import {
 	TouchableOpacity,
 	GestureResponderEvent,
 } from "react-native";
-import colors from "../../config/colors";
 import { AppText } from "../Text";
-import ActivityIndicator from "../ActivityIndicator";
 import { BreedItem } from "../../types";
 import ImageView from "../ImageView";
 import { Styles } from "../../config/styles";
+import { useTheme } from "@react-navigation/native";
 
 function BreedsListItem({
 	item,
@@ -21,10 +20,11 @@ function BreedsListItem({
 	onPress: (event: GestureResponderEvent) => void;
 }) {
 	const [isImageLoading, setImageLoading] = useState(false);
-	const { id, name, image, description } = item;
+	const { name, image, description } = item;
+	const { colors } = useTheme();
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.card, { backgroundColor: colors.card }]}>
 			<TouchableOpacity
 				onPress={onPress}
 				style={{ flexDirection: "row" }}
@@ -37,8 +37,18 @@ function BreedsListItem({
 					onLoadEnd={() => setImageLoading(false)}
 				/>
 				<View style={{ flex: 1, marginLeft: 20 }}>
-					<AppText style={styles.title}>{name}</AppText>
-					<AppText numLines={2} style={styles.subtitle}>
+					<AppText
+						style={[styles.title, { color: colors.darkTextColor }]}
+					>
+						{name}
+					</AppText>
+					<AppText
+						numLines={2}
+						style={[
+							styles.subtitle,
+							{ color: colors.darkTextColor },
+						]}
+					>
 						{description}
 					</AppText>
 				</View>
@@ -48,12 +58,12 @@ function BreedsListItem({
 }
 
 const styles = StyleSheet.create<Styles>({
-	container: {
+	card: {
 		flex: 1,
 		justifyContent: "space-between",
 		flexDirection: "row",
 		alignItems: "center",
-		backgroundColor: colors.white,
+		//backgroundColor: colors.white,
 		padding: 10,
 		marginVertical: 10,
 		marginHorizontal: 8,
@@ -77,7 +87,6 @@ const styles = StyleSheet.create<Styles>({
 	},
 	subtitle: {
 		fontSize: 16,
-		color: colors.medium,
 		marginVertical: 4,
 	},
 });

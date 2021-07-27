@@ -9,7 +9,6 @@ function Screen({ children, style }: { children: any; style?: any }) {
 
 const styles = StyleSheet.create({
 	view: {
-		backgroundColor: colors.backgroundColor,
 		paddingTop: Constants.statusBarHeight,
 		flex: 1,
 		paddingBottom: 100,

@@ -32,6 +32,7 @@ export default function BreedsScreen() {
 					<ActivityIndicator visible={getBreedsApi.loading} />
 				) : (
 					<FlatList
+						showsVerticalScrollIndicator={false}
 						windowSize={10}
 						data={getBreedsApi.data}
 						renderItem={renderItem}

@@ -1,12 +1,15 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import colors from "../config/colors";
 import { AppText } from "./Text";
+import { useTheme } from "@react-navigation/native";
 
 function NoDataIndicator() {
+	const { colors } = useTheme();
 	return (
 		<View style={styles.container}>
-			<AppText style={styles.text}>Нет Данных</AppText>
+			<AppText style={[styles.text, { color: colors.mediumTextColor }]}>
+				Нет Данных
+			</AppText>
 		</View>
 	);
 }
@@ -21,7 +24,6 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		fontWeight: "500",
 		fontStyle: "italic",
-		color: colors.medium,
 	},
 });
 

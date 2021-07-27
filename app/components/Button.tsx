@@ -6,7 +6,6 @@ import {
 	GestureResponderEvent,
 	ViewStyle,
 } from "react-native";
-import colors from "../config/colors";
 import { AppText } from "./Text";
 
 type AppButton = {
@@ -38,13 +37,9 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 	},
 	title: {
-		color: colors.white,
 		fontWeight: "500",
+		color: "white",
 	},
 });
-
-AppButton.defaultProps = {
-	backgroundColor: colors.primary,
-};
 
 export default AppButton;

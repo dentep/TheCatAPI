@@ -1,6 +1,7 @@
 export type BottomTabParamList = {
 	BreedsNavigator: undefined;
 	Favourites: undefined;
+	Settings: undefined;
 };
 
 export type BreedStackParamList = {
