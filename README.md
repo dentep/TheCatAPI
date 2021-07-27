@@ -1,6 +1,4 @@
-# YakovlevStudioTestProj
-
-Test project for an interview on position React Native Developer
+# TheCatAPI
 
 Общее количество времени: 20-30 часов
 
@@ -14,7 +12,7 @@ Test project for an interview on position React Native Developer
 
 # Alpha 1.0.3 prod
 
-С 27.07.2021 этот проект считается завершенным. Я буду продолжать данный проект (дополнять функционал / делать boilerplate) под другим именем проекта.
+С 27.07.2021 этот проект считается завершенным. Я буду продолжать данный проект (дополнять функционал / делать boilerplate) под другим именем проекта (TheCatAPI).
 
 `Установка (можно любой из способов):`
 
