@@ -4,7 +4,6 @@ import Constants from "expo-constants";
 import { useNetInfo } from "@react-native-community/netinfo";
 import AppText from "./Text";
 import colors from "../config/colors";
-import { Styles } from "../config/styles";
 
 function OfflineNotice() {
 	const netInfo = useNetInfo();
@@ -21,7 +20,7 @@ function OfflineNotice() {
 	return null;
 }
 
-const styles = StyleSheet.create<Styles>({
+const styles = StyleSheet.create({
 	container: {
 		alignItems: "center",
 		backgroundColor: colors.danger,

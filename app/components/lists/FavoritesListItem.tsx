@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { FavouritesItem } from "../../types";
+import { FavoritesItem } from "../../types";
 import ImageView from "../ImageView";
 import { Dimensions } from "react-native";
 import { Styles } from "../../config/styles";
 
-function FavouritesListItem({ item }: { item: FavouritesItem }) {
+function FavoritesListItem({ item }: { item: FavoritesItem }) {
 	const [isImageLoading, setImageLoading] = useState(false);
 	const { image } = item;
 	const windowWidth = Dimensions.get("window").width - 20;
@@ -38,4 +38,4 @@ const styles = StyleSheet.create<Styles>({
 	},
 });
 
-export default FavouritesListItem;
+export default FavoritesListItem;

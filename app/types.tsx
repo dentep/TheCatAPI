@@ -1,5 +1,3 @@
-import ImageView from "./components/ImageView";
-
 export type BottomTabParamList = {
 	BreedsNavigator: undefined;
 	Favourites: undefined;
@@ -17,7 +15,7 @@ export type BreedItem = {
 	description: string;
 };
 
-export type FavouritesItem = {
+export type FavoritesItem = {
 	created_at?: string;
 	id: number;
 	image: ImageType;
@@ -29,10 +27,4 @@ export type FavouritesItem = {
 export type ImageType = {
 	url?: string;
 	id: string;
-};
-
-export type FavouritesContextState = {
-	favourites: FavouritesItem[];
-	addFavourite: (item: FavouritesItem) => void;
-	replaceFavourites: (favourites: FavouritesItem[]) => void;
 };

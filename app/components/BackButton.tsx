@@ -4,11 +4,9 @@ import {
 	TouchableOpacity,
 	GestureResponderEvent,
 	StyleSheet,
-	ViewStyle,
-	StyleProp,
+	ViewProps,
 } from "react-native";
 import colors from "../config/colors";
-import { Styles } from "../config/styles";
 import Icon from "./Icon";
 
 function BackButton({
@@ -16,7 +14,7 @@ function BackButton({
 	style,
 }: {
 	onPress: (event: GestureResponderEvent) => void;
-	style?: StyleProp<ViewStyle>;
+	style?: {};
 }) {
 	return (
 		<View style={[styles.container, style]}>
@@ -27,7 +25,7 @@ function BackButton({
 	);
 }
 
-const styles = StyleSheet.create<Styles>({
+const styles = StyleSheet.create({
 	container: {
 		width: 40,
 		height: 40,

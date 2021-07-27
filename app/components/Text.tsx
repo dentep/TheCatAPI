@@ -1,13 +1,13 @@
 import * as React from "react";
-import { StyleProp, Text, TextStyle } from "react-native";
+import { Text } from "react-native";
 import defaultStyles from "../config/styles";
 
-interface AppText {
+type AppText = {
 	props?: Text;
-	style?: StyleProp<TextStyle>;
-	children: React.ReactNode;
+	style?: any;
+	children: string;
 	numLines?: number;
-}
+};
 
 export function AppText(props: AppText) {
 	const { children, style, numLines } = props;

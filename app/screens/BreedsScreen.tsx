@@ -9,17 +9,9 @@ import ActivityIndicator from "../components/ActivityIndicator";
 import Screen from "../components/Screen";
 import BreedsListItem from "../components/lists/BreedsListItem";
 import { Styles } from "../config/styles";
+import NavigationService from "../navigation/NavigationService";
 
-type ProfileScreenNavigationProp = StackNavigationProp<
-	BreedStackParamList,
-	"Breeds"
->;
-
-type Props = {
-	navigation: ProfileScreenNavigationProp;
-};
-
-export default function BreedsScreen({ navigation }: Props) {
+export default function BreedsScreen() {
 	const getBreedsApi = useApi(breedsApi.getBreeds);
 
 	useEffect(() => {
@@ -29,7 +21,7 @@ export default function BreedsScreen({ navigation }: Props) {
 	const renderItem = ({ item }: { item: any }) => (
 		<BreedsListItem
 			item={item}
-			onPress={() => navigation.navigate("Breed", { item: item })}
+			onPress={() => NavigationService.navigate("Breed", { item: item })}
 		/>
 	);
 

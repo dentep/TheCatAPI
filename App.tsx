@@ -1,27 +1,54 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import AppNavigator from "./app/navigation/AppNavigator";
-import { NavigationContainer } from "@react-navigation/native";
-import FlashMessage from "react-native-flash-message";
 import OfflineNotice from "./app/components/OfflineNotice";
-import { AppProvider } from "./app/context/AppContext";
-import { createStore } from "redux";
-import rootReducer from "./app/redux/reducers";
-import { Provider } from "react-redux";
+import AppNavigator from "./app/navigation/AppNavigator";
+import FlashMessage from "react-native-flash-message";
+import { NavigationContainer } from "@react-navigation/native";
 
-export default function App() {
-	const store = createStore(rootReducer);
+import { ActivityIndicator } from "react-native";
+import { Provider, useSelector } from "react-redux";
+import { PersistGate } from "redux-persist/es/integration/react";
+import { Provider as PaperProvider } from "react-native-paper";
+
+import {
+	PaperThemeDefault,
+	PaperThemeDark,
+	CombinedDefaultTheme,
+	CombinedDarkTheme,
+} from "./app/config/theme-config";
+import configureStore from "./app/store";
+import { IThemeState } from "./app/models/reducers/theme";
+import { navigationRef } from "./app/navigation/NavigationService";
+
+interface IState {
+	themeReducer: IThemeState;
+}
+
+const RootNavigation: React.FC = () => {
+	const isDark = useSelector((state: IState) => state.themeReducer.isDark);
+	const paperTheme = isDark ? PaperThemeDark : PaperThemeDefault;
+	const combinedTheme = isDark ? CombinedDarkTheme : CombinedDefaultTheme;
 
 	return (
-		<AppProvider>
-			<Provider store={store}>
-				<NavigationContainer>
-					<AppNavigator />
-					<StatusBar />
-					<OfflineNotice />
-					<FlashMessage />
-				</NavigationContainer>
-			</Provider>
-		</AppProvider>
+		<PaperProvider theme={paperTheme}>
+			<NavigationContainer ref={navigationRef}>
+				<AppNavigator />
+				<OfflineNotice />
+				<StatusBar style="auto" />
+				<FlashMessage />
+			</NavigationContainer>
+		</PaperProvider>
+	);
+};
+
+export default function App() {
+	const { persistor, store } = configureStore();
+
+	return (
+		<Provider store={store}>
+			<PersistGate loading={<ActivityIndicator />} persistor={persistor}>
+				<RootNavigation />
+			</PersistGate>
+		</Provider>
 	);
 }

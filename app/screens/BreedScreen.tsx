@@ -19,24 +19,17 @@ import useApi from "../hooks/useApi";
 import ScrollViewHeader from "../components/ScrollViewHeader";
 import favouritesApi from "../api/favourites";
 import { showMessage } from "react-native-flash-message";
-import { AppContext } from "../context/AppContext";
-import { ContextTypes } from "../context/contextTypes";
 import { useDispatch } from "react-redux";
-import { addFavourite } from "../redux/actions";
+import NavigationService from "../navigation/NavigationService";
+import * as favoriteItemsActions from "../store/actions/favoriteItemsActions";
 
-type ScreenNavigationProp = StackNavigationProp<BreedStackParamList, "Breed">;
 type ScreenRouteProp = RouteProp<BreedStackParamList, "Breed">;
-
 type Props = {
 	route: ScreenRouteProp;
-	navigation: ScreenNavigationProp;
 };
 
-function BreedScreen({ route, navigation }: Props) {
-	//context to add new image (useContext & useReducer way)
-	const { dispatch } = useContext(AppContext);
-	//dispatch using redux way (omitting the actual action in /actions/index.ts)
-	const reduxDispatch = useDispatch();
+function BreedScreen({ route }: Props) {
+	const dispatch = useDispatch();
 
 	//props destructure
 	const { image, id, name, description } = route.params.item;
@@ -71,16 +64,17 @@ function BreedScreen({ route, navigation }: Props) {
 
 			//if everything ok - add to context
 			if (result.ok) {
-				//useContext & useReducer way
-				dispatch({
-					type: ContextTypes.Add,
-					payload: { id: result.data.id, image: catImage },
-				});
 				//redux way
-				reduxDispatch({
+				/*reduxDispatch({
 					type: ContextTypes.Add,
 					payload: { id: result.data.id, image: catImage },
-				});
+				});*/
+				dispatch(
+					favoriteItemsActions.addFavItem({
+						id: result.data.id,
+						image: catImage,
+					})
+				);
 				return showMessage({
 					message: "Добавлено",
 					description: "Вы успешно добавили фотографию в избранное!",
@@ -102,7 +96,7 @@ function BreedScreen({ route, navigation }: Props) {
 				<ScrollViewHeader />
 				<BackButton
 					style={{ left: 0, marginBottom: 30 }}
-					onPress={() => navigation.goBack()}
+					onPress={() => NavigationService.goBack()}
 				/>
 				<ImageView
 					style={styles.imageBox}

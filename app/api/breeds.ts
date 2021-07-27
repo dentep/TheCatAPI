@@ -1,3 +1,5 @@
+//api client template for running https://thecatapi.com
+
 import client from "./client";
 
 const breedsEndpoint = "/breeds";
