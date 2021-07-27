@@ -23,7 +23,7 @@ Type based architecture for React Native application using <a href="https://thec
 `Installation (use any):`
 
 <ol>
-  <li>Go to <a href="https://expo.io/@denistepp/Cats-YakovlevStudio?release-channel=staging">project in Expo</a>. Scan QR and use it.</li>
+  <li>Go to <a href="https://expo.dev/@denistepp/thecatapi?release-channel=staging">project in Expo</a>. Scan QR and use it.</li>
   <li>Clone repo -> npm install -> expo start</li>
 </ol>
 
