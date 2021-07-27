@@ -55,7 +55,7 @@
 `Стек`:
 
 <ol>
-  <li>Typescript (90%) / Javascript (10%)</li>
+  <li>Typescript (90%) / Javascript (10%) - не считая Shadow Components</li>
   <li>Redux & useContext() + useReducer()</li>
   <li>Lottie</li>
   <li>React Navigation</li>
