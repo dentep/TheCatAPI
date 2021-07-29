@@ -5,7 +5,7 @@ import AppNavigator from "./navigation/AppNavigator";
 import FlashMessage from "react-native-flash-message";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, Alert } from "react-native";
 import { Provider, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/es/integration/react";
 import configureStore from "./store";
@@ -32,6 +32,7 @@ const RootNavigation: React.FC = () => {
 
 	//setting language
 	i18n.locale = language !== undefined ? language : Localization.locale;
+	//Alert.alert("lang", i18n.locale);
 
 	return (
 		<NavigationContainer theme={theme} ref={navigationRef}>

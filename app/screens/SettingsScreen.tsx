@@ -1,6 +1,12 @@
 import ThemeController from "../components/ThemeController";
-import React from "react";
-import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+	View,
+	StyleSheet,
+	FlatList,
+	TouchableOpacity,
+	Alert,
+} from "react-native";
 import AppText from "../components/Text";
 import Screen from "../components/Screen";
 import { useTheme } from "@react-navigation/native";
@@ -25,10 +31,17 @@ function SettingsScreen() {
 	const { colors } = useTheme();
 	const dispatch = useDispatch();
 	const language = useSelector((state: IState) => state.languageReducer.lang);
+	const [selectedLanguage, setSelectedLanguage] = useState(language);
 
+	useEffect(() => {
+		if (selectedLanguage !== language) {
+			Restart();
+		}
+	}, [language]);
+
+	//Alert.alert("", language);
 	const onLanguageChange = (lang: string) => {
 		dispatch(languageActions.setLanguage(lang));
-		Restart();
 	};
 
 	const renderItem = ({ item }: { item: any }) => {
