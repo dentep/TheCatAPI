@@ -50,7 +50,6 @@ function TabBarIcon(props: { name: any; focused: boolean; size: any }) {
 
 export default function BottomTabNavigator() {
 	const { colors } = useTheme();
-	console.log(colors);
 	return (
 		<Tabs.Navigator
 			initialRouteName="BreedsNavigator"

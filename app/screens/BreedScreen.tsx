@@ -7,7 +7,6 @@ import {
 	ViewStyle,
 	TextStyle,
 } from "react-native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { BreedStackParamList } from "../types";
 import { RouteProp } from "@react-navigation/native";
 import { AppText } from "../components/Text";
@@ -23,6 +22,8 @@ import { useDispatch } from "react-redux";
 import NavigationService from "../navigation/NavigationService";
 import * as favoriteItemsActions from "../store/actions/favoriteItemsActions";
 import { useTheme } from "@react-navigation/native";
+import i18n from "i18n-js";
+import metrics from "../config/metrics";
 
 type ScreenRouteProp = RouteProp<BreedStackParamList, "Breed">;
 type Props = {
@@ -66,11 +67,6 @@ function BreedScreen({ route }: Props) {
 
 			//if everything ok - add to context
 			if (result.ok) {
-				//redux way
-				/*reduxDispatch({
-					type: ContextTypes.Add,
-					payload: { id: result.data.id, image: catImage },
-				});*/
 				dispatch(
 					favoriteItemsActions.addFavItem({
 						id: result.data.id,
@@ -78,16 +74,15 @@ function BreedScreen({ route }: Props) {
 					})
 				);
 				return showMessage({
-					message: "Добавлено",
-					description: "Вы успешно добавили фотографию в избранное!",
+					message: i18n.t("added"),
+					description: i18n.t("addedToFavorites"),
 					type: "success",
 				});
 			}
 		}
 		showMessage({
-			message: "Ошибка",
-			description:
-				"Что-то пошло не так. Пожалуйста, попробуйте еще раз или попробуйте поменять фотографию",
+			message: i18n.t("error"),
+			description: i18n.t("somethingWentWrong"),
 			type: "danger",
 		});
 	};
@@ -120,15 +115,23 @@ function BreedScreen({ route }: Props) {
 				</AppText>
 				<View style={styles.buttonBox}>
 					<AppButton
+						buttonStyle={{
+							width: metrics.screenWidth / 2 - 30,
+							height: 80,
+						}}
 						backgroundColor={colors.primary}
 						labelStyle={{ fontSize: 14 }}
-						label={`Другое Фото`}
+						label={i18n.t("anotherImage")}
 						onPress={() => onFetchAnotherImage()}
 					/>
 					<AppButton
+						buttonStyle={{
+							width: metrics.screenWidth / 2 - 30,
+							height: 80,
+						}}
 						backgroundColor={colors.primary}
 						labelStyle={{ fontSize: 14 }}
-						label={`Добавить в избранное`}
+						label={i18n.t("addToFavorites")}
 						onPress={() => onPostFavourite()}
 					/>
 				</View>

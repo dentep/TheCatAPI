@@ -12,6 +12,7 @@ import favouritesApi from "../api/favourites";
 import ActivityIndicator from "../components/ActivityIndicator";
 import AppButton from "../components/Button";
 import { useTheme } from "@react-navigation/native";
+import i18n from "i18n-js";
 
 interface IState {
 	favoriteItemsReducer: IFavoriteItems;
@@ -75,7 +76,7 @@ export default function FavouritesScreen() {
 								<AppButton
 									buttonStyle={{ marginHorizontal: 20 }}
 									backgroundColor={colors.primary}
-									label={`Перезагрузить`}
+									label={i18n.t("reload")}
 									onPress={() => onRefresh()}
 								/>
 							</View>

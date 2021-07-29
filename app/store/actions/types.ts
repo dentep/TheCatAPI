@@ -5,6 +5,9 @@ export const LOGIN_DISABLE_LOADER = "LOGIN_DISABLE_LOADER";
 // theming
 export const TOGGLE_THEME = "TOGGLE_THEME";
 
+// theming
+export const CHANGE_LANGUAGE = "CHANGE_LANGUAGE";
+
 // login
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_RESPONSE = "LOGIN_RESPONSE";

@@ -16,24 +16,24 @@ Type based architecture for React Native application using <a href="https://thec
 
 :white_check_mark: Theming
 
-:no_entry_sign: Localization
+:white_check_mark: Language Support (en, ru, zh)
 
-# Alpha 1.0.3 staging
+# Alpha 1.0.4 prod
 
 `Installation (use any):`
 
 <ol>
-  <li>Go to <a href="https://expo.dev/@denistepp/thecatapi?release-channel=staging">project in Expo</a>. Scan QR and use it.</li>
+  <li>Go to <a href="https://expo.dev/@denistepp/thecatapi?release-channel=prod">project in Expo</a>. Scan QR and use it.</li>
   <li>Clone repo -> npm install -> expo start</li>
 </ol>
 
 `TODO:`
 
 <ol>
-  <li>All API calls to TS</li>
-  <li>update storage on application start</li>
-  <li>localization</li>
-  <li>login/logout</li>
   <li>Check for image existence in array of images</li>
   <li>Delete action in reducer</li>
+  <li>All API calls to TS</li>
+  <li>update storage on application start</li>
+  <li>login/logout</li>
+  <li>Check API for duplicate images on calls (might be API error)</li>
 </ol>
