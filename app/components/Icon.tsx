@@ -5,6 +5,7 @@ type Icon = {
 	color: string;
 	size: number;
 	name: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
+	backgroundColor?: string;
 };
 function Icon(props: Icon) {
 	const { size, color, name } = props;

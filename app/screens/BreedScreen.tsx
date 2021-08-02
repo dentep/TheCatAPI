@@ -5,7 +5,7 @@ import {
 	ScrollView,
 	Dimensions,
 	ViewStyle,
-	TextStyle,
+	TextStyle
 } from "react-native";
 import { BreedStackParamList } from "../types";
 import { RouteProp } from "@react-navigation/native";
@@ -18,21 +18,31 @@ import useApi from "../hooks/useApi";
 import ScrollViewHeader from "../components/ScrollViewHeader";
 import favouritesApi from "../api/favourites";
 import { showMessage } from "react-native-flash-message";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavigationService from "../navigation/NavigationService";
 import * as favoriteItemsActions from "../store/actions/favoriteItemsActions";
 import { useTheme } from "@react-navigation/native";
 import i18n from "i18n-js";
 import metrics from "../config/metrics";
+import { checkBreedDuplicate } from "../helpers/checkBreedDuplicate";
+import { IFavoriteItems } from "../models/reducers/favoriteItems";
 
 type ScreenRouteProp = RouteProp<BreedStackParamList, "Breed">;
 type Props = {
 	route: ScreenRouteProp;
 };
+interface IState {
+	favoriteItemsReducer: IFavoriteItems;
+}
 
 function BreedScreen({ route }: Props) {
 	const dispatch = useDispatch();
 	const { colors } = useTheme();
+
+	//favourites
+	const items = useSelector(
+		(state: IState) => state.favoriteItemsReducer.items
+	);
 
 	//props destructure
 	const { image, id, name, description } = route.params.item;
@@ -61,7 +71,12 @@ function BreedScreen({ route }: Props) {
 
 	//todo: Проверка на имеющуюся фотографию в "избранных"
 	const onPostFavourite = async () => {
-		if (catImage && catImage.id && catImage.url) {
+		if (
+			catImage &&
+			catImage.id &&
+			catImage.url &&
+			checkBreedDuplicate({ item: catImage, items: items })
+		) {
 			//adding to api call
 			const result = await postFavouriteImage.request(catImage.id);
 
@@ -70,20 +85,20 @@ function BreedScreen({ route }: Props) {
 				dispatch(
 					favoriteItemsActions.addFavItem({
 						id: result.data.id,
-						image: catImage,
+						image: catImage
 					})
 				);
 				return showMessage({
 					message: i18n.t("added"),
 					description: i18n.t("addedToFavorites"),
-					type: "success",
+					type: "success"
 				});
 			}
 		}
 		showMessage({
 			message: i18n.t("error"),
 			description: i18n.t("somethingWentWrong"),
-			type: "danger",
+			type: "danger"
 		});
 	};
 
@@ -117,7 +132,7 @@ function BreedScreen({ route }: Props) {
 					<AppButton
 						buttonStyle={{
 							width: metrics.screenWidth / 2 - 30,
-							height: 80,
+							height: 80
 						}}
 						backgroundColor={colors.primary}
 						labelStyle={{ fontSize: 14 }}
@@ -127,7 +142,7 @@ function BreedScreen({ route }: Props) {
 					<AppButton
 						buttonStyle={{
 							width: metrics.screenWidth / 2 - 30,
-							height: 80,
+							height: 80
 						}}
 						backgroundColor={colors.primary}
 						labelStyle={{ fontSize: 14 }}
@@ -153,38 +168,38 @@ const styles = StyleSheet.create<Styles>({
 	scrollContainer: {
 		width: "100%",
 		height: "100%",
-		paddingHorizontal: 20,
+		paddingHorizontal: 20
 	},
 	container: {
 		flex: 1,
-		paddingBottom: 100,
+		paddingBottom: 100
 	},
 	buttonBox: {
 		flex: 1,
 		flexDirection: "row",
 		justifyContent: "space-between",
-		marginVertical: 8,
+		marginVertical: 8
 	},
 	imageBox: {
 		shadowColor: "#000",
 		shadowOffset: {
 			width: 0,
-			height: 6,
+			height: 6
 		},
 		shadowOpacity: 0.37,
 		shadowRadius: 7.49,
 
-		elevation: 12,
+		elevation: 12
 	},
 	title: {
 		fontSize: 24,
 		fontWeight: "600",
-		marginVertical: 24,
+		marginVertical: 24
 	},
 	subtitle: {
 		fontSize: 16,
-		marginVertical: 8,
-	},
+		marginVertical: 8
+	}
 });
 
 export default BreedScreen;

@@ -30,7 +30,7 @@ Type based architecture for React Native application using <a href="https://thec
 `TODO:`
 
 <ol>
-  <li>Check for image existence in array of images</li>
+  <li>~~Check for image existence in array of images~~</li>
   <li>Delete action in reducer</li>
   <li>All API calls to TS</li>
   <li>update storage on application start</li>

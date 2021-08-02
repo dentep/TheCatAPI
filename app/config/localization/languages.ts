@@ -10,7 +10,8 @@ const en = {
 	addedToFavorites:
 		"You have successfully added the image to your favorites!",
 	somethingWentWrong:
-		"Something went wrong. Please try again, or try to reload another image.",
+		"Something went wrong. You probably already have this image in your favorites.",
+	existedFavorite: "This image already exists in favorites."
 };
 
 const ru = {
@@ -24,7 +25,8 @@ const ru = {
 	added: "Добавлено",
 	addedToFavorites: "Вы успешно добавили фотографию в избранное!",
 	somethingWentWrong:
-		"Что-то пошло не так. Пожалуйста, попробуйте загрузить другое фото еще раз.",
+		"Что-то пошло не так. Возможно, у вас уже есть такое фото в избранных.",
+	existedFavorite: "Такая фотография уже есть в избранных."
 };
 
 const zh = {
@@ -38,6 +40,7 @@ const zh = {
 	added: "增加",
 	addedToFavorites: "您已成功将照片添加到收藏夹!",
 	somethingWentWrong: "出问题了。请尝试重新上传另一张照片。 ",
+	existedFavorite: "This image already exists in favorites."
 };
 
 export { zh, en, ru };

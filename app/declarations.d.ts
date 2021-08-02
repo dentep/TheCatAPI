@@ -24,6 +24,8 @@ declare module "@react-navigation/native" {
 			brightTextColor: string;
 			mediumTextColor: string;
 			darkTextColor: string;
+
+			danger: string;
 		};
 	};
 	export function useTheme(): ExtendedTheme;

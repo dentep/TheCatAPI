@@ -13,6 +13,8 @@ import ActivityIndicator from "../components/ActivityIndicator";
 import AppButton from "../components/Button";
 import { useTheme } from "@react-navigation/native";
 import i18n from "i18n-js";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import ListItemAction from "../components/lists/ListItemAction";
 
 interface IState {
 	favoriteItemsReducer: IFavoriteItems;
@@ -41,8 +43,37 @@ export default function FavouritesScreen() {
 		}
 	};
 
+	const handleDelete = (id: number) => {
+		console.log(id);
+	};
+
+	let rowRefs = new Map();
 	const renderItem: ListRenderItem<FavoritesItem> = ({ item }) => (
-		<FavoritesListItem item={item} />
+		<Swipeable
+			key={item.id}
+			ref={(ref) => {
+				if (ref && !rowRefs.get(item.id)) {
+					rowRefs.set(item.id, ref);
+				}
+			}}
+			onSwipeableWillOpen={() => {
+				[...rowRefs.entries()].forEach(([key, ref]) => {
+					if (key !== item.id && ref) ref.close();
+				});
+			}}
+			renderRightActions={() => (
+				<>
+					<ListItemAction
+						onPress={() => handleDelete(item.id)}
+						iconName="trash-can"
+						iconColor={`#ffffff`}
+						iconBackgroundColor={colors.danger}
+					/>
+				</>
+			)}
+		>
+			<FavoritesListItem item={item} />
+		</Swipeable>
 	);
 
 	return (
@@ -69,7 +100,7 @@ export default function FavouritesScreen() {
 									flex: 1,
 									justifyContent: "center",
 									alignItems: "center",
-									marginBottom: 20,
+									marginBottom: 20
 								}}
 							>
 								<NoDataIndicator />
@@ -90,6 +121,6 @@ export default function FavouritesScreen() {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-	},
+		flex: 1
+	}
 });

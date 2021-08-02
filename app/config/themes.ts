@@ -2,7 +2,7 @@ import {
 	DarkTheme,
 	DefaultTheme,
 	ExtendedTheme,
-	Theme,
+	Theme
 } from "@react-navigation/native";
 
 export const DarkThemeApp: ExtendedTheme = {
@@ -28,7 +28,8 @@ export const DarkThemeApp: ExtendedTheme = {
 		brightTextColor: "#0c0c0c",
 		mediumTextColor: "#cccccc",
 		darkTextColor: "#ffffff",
-	},
+		danger: "#fc5c65"
+	}
 };
 
 export const LightThemeApp: ExtendedTheme = {
@@ -54,5 +55,6 @@ export const LightThemeApp: ExtendedTheme = {
 		brightTextColor: "#ffffff",
 		mediumTextColor: "#6e6969",
 		darkTextColor: "#0c0c0c",
-	},
+		danger: "#fc5c65"
+	}
 };
